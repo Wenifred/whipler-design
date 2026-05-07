@@ -1,0 +1,209 @@
+.text-white-70 {
+  --bs-text-opacity: 1;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+body, .bg-color-pages {
+  background-color: #ebebe5; /* Your brand off-white */
+}
+/* =============================================================
+   Whipler Design — Portfolio Masonry Grid + Lightbox
+   Add to scss/styles.scss or a separate _portfolio.scss partial
+   ============================================================= */
+
+/* ---- Masonry grid (CSS columns — no JS library needed) ---- */
+
+.wd-masonry-item {
+  margin-bottom: 30px;
+  float: left;
+}
+
+.wd-masonry-sizer {
+  width: calc(33.333% - 20px);
+}
+
+.wd-masonry-grid {
+  column-count: 3;
+  column-gap: 30px;
+  width: 100%;
+}
+
+/* Link wrapper */
+.wd-masonry-item a.wd-lightbox-trigger {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+  line-height: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+.wd-masonry-item a.wd-lightbox-trigger:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+.wd-masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Subtle zoom on hover */
+.wd-masonry-item a.wd-lightbox-trigger:hover img {
+  transform: scale(1.03);
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* ---- Tall image fade overlay ---- */
+.wd-fade-overlay {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;          /* How much of the fade shows */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.92) 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Fade out the overlay on hover so user sees more of the image */
+.wd-masonry-item a.wd-lightbox-trigger:hover .wd-fade-overlay {
+  opacity: 0.3;
+}
+
+/* ---- Responsive breakpoints ---- */
+@media (max-width: 991px) {
+  .wd-masonry-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 575px) {
+  .wd-masonry-grid {
+    column-count: 1;
+  }
+}
+
+.wd-older-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  column-gap: 5px;
+  row-gap: 30px;
+}
+
+.wd-older-projects img {
+  display: block;
+  margin: 0 auto;       /* centres horizontally in the cell */
+}
+
+
+/* =============================================================
+   Lightbox
+   ============================================================= */
+.wd-lightbox-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(13, 13, 13, 0.93);    /* Your brand #0D0D0D */
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.wd-lightbox-backdrop.is-open {
+  display: flex;
+}
+
+.wd-lightbox-inner {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wd-lightbox-img {
+  display: block;
+  max-width: min(92vw, 1400px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 8px 60px rgba(0, 0, 0, 0.7);
+  cursor: default;
+  /* Fade in */
+  animation: wdLbFadeIn 0.22s ease;
+}
+
+@keyframes wdLbFadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.wd-lightbox-close {
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 2rem;
+  line-height: 1;
+  color: #F5F5F5;           /* Your brand off-white */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  z-index: 10001;
+  transition: color 0.2s;
+}
+.wd-lightbox-close:hover {
+  color: #2A9D8F;            /* Your brand teal */
+}
+
+/* Prev / Next arrows */
+.wd-lightbox-prev,
+.wd-lightbox-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: #F5F5F5;
+  background: rgba(13, 13, 13, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.9rem;
+  z-index: 10001;
+  transition: background 0.2s, color 0.2s;
+  user-select: none;
+}
+.wd-lightbox-prev { left: 0.5rem; }
+.wd-lightbox-next { right: 0.5rem; }
+.wd-lightbox-prev:hover,
+.wd-lightbox-next:hover {
+  background: rgba(42, 157, 143, 0.7);   /* teal */
+}
+
+/* Counter */
+.wd-lightbox-counter {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(245, 245, 245, 0.6);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  z-index: 10001;
+  pointer-events: none;
+}
