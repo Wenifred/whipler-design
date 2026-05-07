@@ -59,7 +59,19 @@ function _processFile(filePath, watchEvent) {
     if (filePath.match(/src\/assets\//)) {
         return renderAssets();
     }
+    if (filePath.match(/\.html$/)) {
+        return _handleHTML(filePath);
+    }
+}
 
+function _handleHTML(filePath) {
+    const sh = require('shelljs');
+    const upath = require('upath');
+    const srcPath = upath.resolve(upath.dirname(__filename), '../src');
+    const distPath = upath.resolve(upath.dirname(__filename), '../dist');
+    const filename = upath.basename(filePath);
+    sh.cp(filePath, upath.join(distPath, filename));
+    console.log(`### INFO: Copied ${filename} to dist`);
 }
 
 function _handlePug(filePath, watchEvent) {
