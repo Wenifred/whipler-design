@@ -10917,7 +10917,7 @@ body, .bg-color-pages {
 }
 
 .portfolio-btn {
-  min-height: 280px;
+  min-height: 340px;
   transition: filter 0.2s ease, transform 0.2s ease;
   text-align: center;
   filter: drop-shadow(2px 1px 2px rgba(0, 0, 0, 0.4));
