@@ -13,6 +13,9 @@ body, .bg-color-pages {
 .wd-color-dark {
   color: #217e85; /* Your brand teal */
 }
+.bg-secondary-darker {
+  background-color: shade-color($secondary, 5%) !important;
+}
 .text-muted {
   --bs-text-opacity: 0.7;
 }
@@ -27,7 +30,7 @@ body, .bg-color-pages {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  border: 3px solid #2A9D8F;
+  border: 4px solid #2A9D8F;
   object-fit: cover;
   margin-top: 1rem;
 }
@@ -57,16 +60,34 @@ background-image:
   max-height: 550px;
 
 }
-
+.shaddow-txt {
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.7));
+}
 .hero-header h1,
 .hero-header p,
-.hero-header img {
+.hero-header img 
+.shaddow-btn{
   filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.9));
 }
 
 .hero-header p {
   text-shadow: 2px 2px 12px rgba(0, 0, 0, 1), 
                0px 0px 20px rgba(0, 0, 0, 0.9);
+}
+
+.portfolio-btn {
+  min-height: 280px;
+  transition: filter 0.2s ease, transform 0.2s ease;
+  text-align: center;
+  filter: drop-shadow(2px 1px 2px rgba(0, 0, 0, 0.4));
+  &:hover {
+    filter: brightness(1.15) drop-shadow(2px 1px 2px rgba(0, 0, 0, 0.4));
+    transform: translateY(-3px);
+  }
+
+  span.fs-5 {
+    opacity: 0.85;
+  }
 }
 
 /* ---- Masonry grid (CSS columns — no JS library needed) ---- */
