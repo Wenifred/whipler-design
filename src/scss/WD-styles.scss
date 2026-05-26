@@ -109,7 +109,7 @@ body, .bg-color-pages {
 
 .wd-masonry-item {
   margin-bottom: 30px;
-  float: left;
+  break-inside: avoid;
 }
 
 .wd-masonry-sizer {
