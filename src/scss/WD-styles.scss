@@ -36,6 +36,8 @@ body, .bg-color-pages {
 }
 
 .hero-header {
+  position: relative;
+  overflow: hidden;
   background-color: #0D0D0D;
   background-image: 
     linear-gradient(
@@ -44,7 +46,6 @@ body, .bg-color-pages {
       rgba(13, 13, 13, 0) 5%,
       rgba(13, 13, 13, 0.80) 25%,
       rgba(13, 13, 13, 0.80) 40%,
-
       rgba(13, 13, 13, 0) 65%,
       transparent 100%
     ),
@@ -52,42 +53,94 @@ body, .bg-color-pages {
       to left,
       rgba(13, 13, 13, 0.8) 0%,
       transparent 5%
-    ),
-    url('../assets/back-whipler2.jpg');
+    );
   background-size: cover;
   background-position: bottom right;
   background-repeat: no-repeat;
   min-height: 450px;
   max-height: 550px;
 
-  @media (max-width: 1200px) {
+  // Mobile — no video, just image + dark overlay
+  @media (max-width: 768px) {
+    background-image: url('../assets/back-whipler2.jpg');
+    background-size: cover;
+    background-position: bottom right;
+  }
+
+  // Tablet — image with simple dark row overlay (your existing behaviour)
+  @media (min-width: 769px) and (max-width: 1200px) {
+    background-image: url('../assets/back-whipler2.jpg');
+    background-size: cover;
+    background-position: bottom right;
+  }
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom right;
+  z-index: 0;
+
+}
+
+// Gradients sit on top of the video
+.hero-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-image: 
-  url('../assets/back-whipler2.jpg');
-  background-size: cover;
-  background-position: bottom right;
-  background-repeat: no-repeat;
-  min-height: 450px;
-  max-height: 550px;
-  }
+    linear-gradient(
+      65deg,
+      rgba(13, 13, 13, 0) 0%,
+      rgba(13, 13, 13, 0) 5%,
+      rgba(13, 13, 13, 0.80) 25%,
+      rgba(13, 13, 13, 0.80) 40%,
+      rgba(13, 13, 13, 0) 65%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to left,
+      rgba(13, 13, 13, 0.8) 0%,
+      transparent 5%
+    );
+  z-index: 1;
 
+  // Hide gradient overlay on mobile/tablet (not needed over image)
+  @media (max-width: 1200px) {
+    display: none;
+  }
 }
+
+// Content must sit above video and gradient
+.hero-header .container {
+  position: relative;
+  z-index: 2;
+}
+
 @media (max-width: 1200px) {
-  .hero-header .row {
-    background-color:#0D0D0Ddd;
-  }
-}
-.shaddow-txt {
-  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.7));
-}
-.hero-header h1,
-.hero-header p,
-.hero-header img {
-  filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.9));
-}
+  .hero-header {
+    background-image: url('../assets/back-whipler2.jpg');
+    background-size: cover;
+    background-position: bottom right;
 
-.hero-header p {
-  text-shadow: 2px 2px 12px rgba(0, 0, 0, 1), 
-               0px 0px 20px rgba(0, 0, 0, 0.9);
+    // Full black overlay on top of the image
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(13, 13, 13, 0.65);
+      z-index: 1;
+    }
+  }
+
+  // Remove the row overlay — the ::before handles it now
+  .hero-header .row {
+    background-color: transparent;
+  }
 }
 
 .portfolio-btn {
