@@ -10902,6 +10902,7 @@ body, .bg-color-pages {
   background-repeat: no-repeat;
   min-height: 450px;
   max-height: 550px;
+  box-shadow: 0px 4px 4px rgb(209, 183, 72);
 }
 @media (max-width: 768px) {
   .hero-header {
@@ -10926,8 +10927,8 @@ body, .bg-color-pages {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: bottom right;
-     object-position: bottom right;
+  -o-object-position: center left;
+     object-position: center left;
   z-index: 0;
 }
 
